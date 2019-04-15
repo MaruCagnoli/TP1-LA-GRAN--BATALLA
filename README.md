@@ -47,4 +47,30 @@ de los arquetipos se llama también archetype.
 Se componen por un directorio resources que contiene todos los archivos y directorios
 que contendrá el proyecto generado y un descriptor en xml.
 
+4- Explique los siguientes goals de maven:
+Un goal es un comando que recibe maven como parámetro para que haga algo. La sintaxis
+sería: mvn plugin: comando
+- clean:(sintaxis: mvn clean:clean): Limpia todas las clases compiladas del proyecto.
+  Borra cualquier archivo generado previamente, por ejemplo los .class resultado de la
+  compilación. En la práctica lo que hace es borrar la carpeta target de nuestro
+  proyecto, que es donde va a parar el contenido generado.
+- package:Empaqueta el proyecto, por ejemplo si el pproyecto es de java simple,
+genera un jar, si es un proyecto web un war, etc.)
+- install: instala el artifact en el repositorio local.
+- compile: compila el proyecto al directorio target.
+
+5- Explique los siguientes Scopes:
+El scope sirve para indicar el alcance de nuestra dependencia y su transitividad.
+- compile: es la que tenemos por defecto sino especificamos scope. Indica que la 
+  dependencia es necesaria para compilar. La dependencia además se propaga en los 
+  proyectos dependientes.
+- provided:Es como compile, pero esperas que el contenedor ya tenga esa librería.
+  Un claro ejemplo es cuando desplegamos en un servidor de aplicaciones, que por
+  defecto, tiene bastantes librerías que utilizaremos en el proyecto, asi que no
+  necesitamos desplegar la dependencia.
+- runtime:La dependencia es necesaria en tiempo de ejecución pero no de compilación.
+- test: La dependencia es solo para un testing que es una de las fases de compilación
+  con maven. JUnit es un ejemplo de esto.
+ - system: Este scope solo se usa en la sección dependencyManagement.Es similar a provided    pero se debe incluir la dependencia explisitamente. No se buscará en el repositorio        local. Habrá que especificar la ruta de la dependencia mediante la etiqueta
+
 
